@@ -1,5 +1,0 @@
-upstream_repo: https://github.com/sKleini/APK-installer
-upstream_commit: 5f307d1f0ec6a0d846f1fb7779bd3e4948c5b8b5
-upstream_date: 2021-09-15
-updated: 2021-09-15
-channel: stable
