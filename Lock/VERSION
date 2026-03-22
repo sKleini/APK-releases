@@ -1,0 +1,6 @@
+upstream_repo: https://github.com/sKleini/Lock
+upstream_commit_stable: 690b77df3c6ac14a841a3022875e981eb2459e0c
+upstream_date_stable: 2020-08-30
+upstream_commit_develop: bb0b351337486bd4b1deb00be909d5924a7068d4
+upstream_date_develop: 2020-08-18
+updated: 2020-08-30

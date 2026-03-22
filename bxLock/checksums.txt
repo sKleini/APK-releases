@@ -1,0 +1,2 @@
+05bf605dde91d9c04d4e21a01db17e27ed712d489c5e3f818dfcdb5b812e5a71  bxLock/bxLock.apk
+91a1a1c5edfd8340a8c9847e128ee445e5a04b64c984a99efef2a79ce7273085  bxLock/develop/bxLock.apk

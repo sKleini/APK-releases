@@ -1,0 +1,6 @@
+upstream_repo: https://github.com/sKleini/bxLock
+upstream_commit_stable: dc70e0500d892b1af1f660b58e6cd36f2ddd5401
+upstream_date_stable: 2020-08-30
+upstream_commit_develop: 201b967ebd21f38a26f82b0ca2d8d0d1636ce0c9
+upstream_date_develop: 2020-08-18
+updated: 2020-08-30
