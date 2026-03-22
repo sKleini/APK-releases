@@ -1,0 +1,44 @@
+name: APK-Prüfsummen validieren
+
+on:
+  push:
+    paths:
+      - '**/*.apk'
+      - '**/checksums.txt'
+  pull_request:
+    paths:
+      - '**/*.apk'
+      - '**/checksums.txt'
+
+jobs:
+  validate-checksums:
+    name: Prüfsummen verifizieren
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: APK-installer Prüfsumme validieren
+        working-directory: APK-installer
+        run: |
+          echo "Prüfe APK-installer..."
+          sha256sum -c checksums.txt
+          echo "APK-installer OK"
+
+      - name: Lock Prüfsummen validieren
+        working-directory: Lock
+        run: |
+          echo "Prüfe Lock (stable)..."
+          sha256sum -c checksums.txt
+          echo "Lock OK"
+
+      - name: bxLock Prüfsummen validieren
+        working-directory: bxLock
+        run: |
+          echo "Prüfe bxLock (stable)..."
+          sha256sum -c checksums.txt
+          echo "bxLock OK"
+
+      - name: Zusammenfassung
+        run: |
+          echo "Alle APK-Prüfsummen erfolgreich verifiziert."

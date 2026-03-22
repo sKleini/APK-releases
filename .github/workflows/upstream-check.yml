@@ -1,0 +1,96 @@
+name: Upstream-Update prüfen
+
+on:
+  schedule:
+    # Jeden Montag um 08:00 UTC prüfen
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+    # Manuell auslösbar
+
+jobs:
+  check-apk-installer:
+    name: APK-installer auf Updates prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Aktuellen Upstream-Commit lesen
+        id: current
+        run: |
+          COMMIT=$(grep 'upstream_commit:' APK-installer/VERSION | awk '{print $2}')
+          echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Neuesten Upstream-Commit abrufen
+        id: latest
+        run: |
+          LATEST=$(curl -s "https://api.github.com/repos/sKleini/APK-installer/commits/master" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            | jq -r '.sha')
+          echo "commit=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Update verfügbar melden
+        if: steps.current.outputs.commit != steps.latest.outputs.commit
+        run: |
+          echo "::warning::APK-installer Update verfügbar!"
+          echo "Aktuell: ${{ steps.current.outputs.commit }}"
+          echo "Neu:     ${{ steps.latest.outputs.commit }}"
+          echo "URL: https://github.com/sKleini/APK-installer/commit/${{ steps.latest.outputs.commit }}"
+
+  check-lock:
+    name: Lock auf Updates prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Aktuellen Upstream-Commit lesen
+        id: current
+        run: |
+          COMMIT=$(grep 'upstream_commit_stable:' Lock/VERSION | awk '{print $2}')
+          echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Neuesten Upstream-Commit abrufen
+        id: latest
+        run: |
+          LATEST=$(curl -s "https://api.github.com/repos/sKleini/Lock/commits/master" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            | jq -r '.sha')
+          echo "commit=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Update verfügbar melden
+        if: steps.current.outputs.commit != steps.latest.outputs.commit
+        run: |
+          echo "::warning::Lock Update verfügbar!"
+          echo "Aktuell: ${{ steps.current.outputs.commit }}"
+          echo "Neu:     ${{ steps.latest.outputs.commit }}"
+          echo "URL: https://github.com/sKleini/Lock/commit/${{ steps.latest.outputs.commit }}"
+
+  check-bxlock:
+    name: bxLock auf Updates prüfen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Aktuellen Upstream-Commit lesen
+        id: current
+        run: |
+          COMMIT=$(grep 'upstream_commit_stable:' bxLock/VERSION | awk '{print $2}')
+          echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Neuesten Upstream-Commit abrufen
+        id: latest
+        run: |
+          LATEST=$(curl -s "https://api.github.com/repos/sKleini/bxLock/commits/master" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            | jq -r '.sha')
+          echo "commit=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Update verfügbar melden
+        if: steps.current.outputs.commit != steps.latest.outputs.commit
+        run: |
+          echo "::warning::bxLock Update verfügbar!"
+          echo "Aktuell: ${{ steps.current.outputs.commit }}"
+          echo "Neu:     ${{ steps.latest.outputs.commit }}"
+          echo "URL: https://github.com/sKleini/bxLock/commit/${{ steps.latest.outputs.commit }}"

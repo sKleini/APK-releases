@@ -1,0 +1,28 @@
+# Betriebssystem-spezifische Dateien
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Temporäre Dateien
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# IDE und Editor-Dateien
+.idea/
+.vscode/
+*.iml
+
+# Build-Artefakte (APKs werden bewusst getrackt)
+# build/
+# *.apk  <- APKs werden in diesem Repo explizit versioniert
+
+# Log-Dateien
+*.log
