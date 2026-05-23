@@ -30,10 +30,6 @@ APK-releases/
 │   │   └── bxLock.apk          # Entwicklungsversion (Pre-Release)
 │   ├── VERSION                 # Aktuelle Version & Upstream-Commit
 │   └── checksums.txt           # SHA256-Prüfsummen
-├── .github/
-│   └── workflows/
-│       └── upstream-check.yml  # Automatische Upstream-Überwachung
-├── CHANGELOG.md                # Versionshistorie
 ├── CONTRIBUTING.md             # Beitragsleitfaden
 └── SECURITY.md                 # Sicherheitshinweise
 ```
